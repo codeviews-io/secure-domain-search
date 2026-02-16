@@ -1,10 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = (env = {}) => {
+module.exports = (env = {}, argv = {}) => {
   const target = env.target === 'firefox' ? 'firefox' : 'chrome';
   const manifestFile = target === 'firefox' ? 'public/manifest.firefox.json' : 'public/manifest.json';
+  const isProduction = argv.mode === 'production';
 
   return {
     entry: {
@@ -15,6 +17,7 @@ module.exports = (env = {}) => {
       path: path.resolve(__dirname, 'dist', target),
       filename: '[name].js',
       clean: true,
+      globalObject: 'self',
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -32,7 +35,7 @@ module.exports = (env = {}) => {
         },
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader'],
         },
       ],
     },
@@ -42,6 +45,7 @@ module.exports = (env = {}) => {
         filename: 'app.html',
         chunks: ['app'],
       }),
+      ...(isProduction ? [new MiniCssExtractPlugin({ filename: 'styles.css' })] : []),
       new CopyWebpackPlugin({
         patterns: [
           { from: manifestFile, to: 'manifest.json' },

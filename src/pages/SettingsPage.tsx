@@ -57,19 +57,15 @@ export function SettingsPage() {
         <div className="settings-section full-width">
           <h2 className="section-title" style={{ color: colors.textSecondary }}>About</h2>
           <div className="about-links">
-            <a href="https://opendomain.app/about" target="_blank" rel="noopener noreferrer"
-              className="about-link" style={{ borderColor: colors.border, color: colors.text }}>
-              About Us
-            </a>
-            <a href="https://opendomain.app/privacy" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/codeviews-io/secure-domain-search/blob/main/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer"
               className="about-link" style={{ borderColor: colors.border, color: colors.text }}>
               Privacy Policy
             </a>
-            <a href="https://opendomain.app/terms" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/codeviews-io/secure-domain-search/blob/main/TERMS_OF_SERVICE.md" target="_blank" rel="noopener noreferrer"
               className="about-link" style={{ borderColor: colors.border, color: colors.text }}>
               Terms of Service
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/codeviews-io/secure-domain-search" target="_blank" rel="noopener noreferrer"
               className="about-link" style={{ borderColor: colors.border, color: colors.text }}>
               <GithubIcon size={14} color={colors.text} />
               GitHub
